@@ -775,7 +775,11 @@ class PrefsEditor:
         # Background shading
         widget = guiget('background_darkness_scale')
         widget.set_value(float(self.config['background_darkness']))
-   
+
+        # Background blur
+        widget = guiget('background_blur_checkbutton')
+        widget.set_active(self.config['background_blur'])
+
         ## Scrolling tab
         # Scrollbar position
         widget = guiget('scrollbar_position_combobox')
@@ -1120,6 +1124,11 @@ class PrefsEditor:
         if value > 1.0:
           value = 1.0
         self.config['background_darkness'] = value
+        self.config.save()
+
+    def on_background_blur_checkbutton_toggled(self, widget):
+        """Background blur setting changed"""
+        self.config['background_blur'] = widget.get_active()
         self.config.save()
 
     def on_palette_combobox_changed(self, widget):
@@ -1758,8 +1767,10 @@ class PrefsEditor:
 
         if backtype in ('transparent', 'image'):
             guiget('darken_background_scale').set_sensitive(True)
+            guiget('background_blur_checkbutton').set_sensitive(True)
         else:
             guiget('darken_background_scale').set_sensitive(False)
+            guiget('background_blur_checkbutton').set_sensitive(False)
 
     def on_profile_selection_changed(self, selection):
         """A different profile was selected"""
