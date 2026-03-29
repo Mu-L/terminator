@@ -221,6 +221,7 @@ DEFAULTS = {
                 'background_image_mode' : 'stretch_and_fill',
                 'background_image_align_horiz': 'center',
                 'background_image_align_vert' : 'middle',
+                'background_blur'       : False,
                 'backspace_binding'     : 'ascii-del',
                 'delete_binding'        : 'escape-sequence',
                 'cursor_blink'          : True,
