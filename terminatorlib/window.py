@@ -441,7 +441,7 @@ class Window(Container, Gtk.Window):
             libx11.XFlush.argtypes = [ctypes.c_void_p]
             libx11.XFlush.restype = ctypes.c_int
 
-            display = ctypes.c_void_p(GdkX11.x11_get_default_xdisplay())
+            display = ctypes.c_void_p(hash(GdkX11.x11_get_default_xdisplay()))
             xid = self.get_window().get_xid()
 
             blur_atom = libx11.XInternAtom(display, b'_KDE_NET_WM_BLUR_BEHIND_REGION', 0)
